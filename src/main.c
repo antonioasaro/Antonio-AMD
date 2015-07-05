@@ -50,26 +50,29 @@ void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
 
 void handle_init(void) {
     my_window = window_create();
+	window_set_background_color(my_window, GColorBlack);
     window_stack_push(my_window, true);
 
     time_text_layer = text_layer_create(GRect(0, 46, 144, 80));
     text_layer_set_font(time_text_layer, fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49));
     text_layer_set_text_alignment(time_text_layer, GTextAlignmentCenter);
-    text_layer_set_text_color(time_text_layer, GColorBlack);	
-    text_layer_set_text(time_text_layer, "00:00");
+    text_layer_set_text_color(time_text_layer, GColorWhite);	
+    text_layer_set_background_color(time_text_layer, GColorBlack);
+	text_layer_set_text(time_text_layer, "00:00");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));	
 	
     date_text_layer = text_layer_create(GRect(8, 4, 144, 30));
     text_layer_set_font(date_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
     text_layer_set_text_alignment(date_text_layer, GTextAlignmentLeft);
-    text_layer_set_text_color(date_text_layer, GColorBlack);	
+    text_layer_set_text_color(date_text_layer, GColorWhite);	
+    text_layer_set_background_color(date_text_layer, GColorBlack);
     text_layer_set_text(date_text_layer, "Sun, Jan 00");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
 
     tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
  
     img_bkgd        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO);
-    layer_bkgd_img  = bitmap_layer_create(GRect(2, 110, 144, 50));
+    layer_bkgd_img  = bitmap_layer_create(GRect(2, 100, 144, 68));
     bitmap_layer_set_bitmap(layer_bkgd_img, img_bkgd);
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(layer_bkgd_img));	
 
