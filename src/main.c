@@ -54,13 +54,13 @@ void setup_gbitmaps() {
 
 void animate_amd_logo() {
 	is_animating = true;
-	timer = app_timer_register(250, handle_timer, (int *) 0);
+	timer = app_timer_register(50, handle_timer, (int *) 0);
 }
 
 void update_amd_logo(int current_frame) {
 	app_log(APP_LOG_LEVEL_INFO, "main.c", 61, "update_amd_log - %d", current_frame);
 	if ((current_frame >= 0) && (current_frame < FRAMES)) {
-	    bitmap_layer_set_bitmap(layer_bkgd_img, amd_img[current_frame]);
+		bitmap_layer_set_bitmap(layer_bkgd_img, amd_img[current_frame]);
 	} else {
 	    bitmap_layer_set_bitmap(layer_bkgd_img, bkgd_img);
 	}
@@ -78,7 +78,7 @@ static void handle_timer(void *data) {
 	} else {
 		update_amd_logo(current_frame);
 		next_frame = current_frame + 1;
-		timer = app_timer_register(100, &handle_timer, (void *) next_frame);
+	    timer = app_timer_register(175, &handle_timer, (void *) next_frame);
 		return;
 	}
 }
