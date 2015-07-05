@@ -4,13 +4,12 @@
         ""
     ],
     "companyName": "antonio_asaro",
-    "longName": "ANTONIO-AMD",
+    "longName": "Antonio-AMD",
     "projectType": "native",
     "resources": {
         "media": [
             {
                 "file": "images/amd_menu_icon.png",
-                "menuIcon": true,
                 "name": "IMAGE_AMD_MENU_ICON",
                 "type": "png"
             },
@@ -137,12 +136,12 @@
         ]
     },
     "sdkVersion": "3",
-    "shortName": "ANTONIO-AMD",
+    "shortName": "Antonio-AMD",
     "targetPlatforms": [
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.5",
+    "versionLabel": "1.51",
     "watchapp": {
         "watchface": true
     }
