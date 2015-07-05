@@ -10,6 +10,7 @@
         "media": [
             {
                 "file": "images/amd_menu_icon.png",
+                "menuIcon": true,
                 "name": "IMAGE_AMD_MENU_ICON",
                 "type": "png"
             },
@@ -141,7 +142,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.51",
+    "versionLabel": "1.53",
     "watchapp": {
         "watchface": true
     }
