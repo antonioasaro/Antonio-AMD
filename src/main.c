@@ -78,7 +78,7 @@ static void handle_timer(void *data) {
 	} else {
 		update_amd_logo(current_frame);
 		next_frame = current_frame + 1;
-		timer = app_timer_register(250, &handle_timer, (void *) next_frame);
+		timer = app_timer_register(100, &handle_timer, (void *) next_frame);
 		return;
 	}
 }
