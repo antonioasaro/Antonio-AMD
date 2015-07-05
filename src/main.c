@@ -1,6 +1,6 @@
 #include <pebble.h>
 
-#define FRAMES 11
+#define FRAMES 12
 #define BKGD_FRAME 99
 	
 Window *my_window;
@@ -49,7 +49,7 @@ void setup_gbitmaps() {
 ////	amd_img[17] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_17);
 ////	amd_img[18] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_18);
 ////	amd_img[19] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_19);
-////	amd_img[20] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_BLACK);
+	amd_img[11] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_BLACK);
 }
 
 void animate_amd_logo() {
@@ -78,7 +78,11 @@ static void handle_timer(void *data) {
 	} else {
 		update_amd_logo(current_frame);
 		next_frame = current_frame + 1;
-	    timer = app_timer_register(175, &handle_timer, (void *) next_frame);
+		if (current_frame == (uint32_t) FRAMES) {
+	    	timer = app_timer_register(500, &handle_timer, (void *) next_frame);
+		} else {
+	    	timer = app_timer_register(175, &handle_timer, (void *) next_frame);
+		}
 		return;
 	}
 }
