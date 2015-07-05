@@ -1,7 +1,7 @@
 #include <pebble.h>
 
 Window *my_window;
-TextLayer *text_layer;
+TextLayer *time_text_layer;
 BitmapLayer *layer_bkgd_img;
 BitmapLayer *layer_conn_img;
 GBitmap *img_bkgd;
@@ -32,19 +32,19 @@ void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
     if (!clock_is_24h_style() && (time_text[0] == '0')) {
         memmove(time_text, &time_text[1], sizeof(time_text) - 1);
     }
-    text_layer_set_text(text_layer, time_text);
+    text_layer_set_text(time_text_layer, time_text);
 }
 
 void handle_init(void) {
   my_window = window_create();
   window_stack_push(my_window, true);
 
-  text_layer = text_layer_create(GRect(0, 40, 144, 80));
-  text_layer_set_font(text_layer, fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49));
-  text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
-  text_layer_set_text_color(text_layer, GColorBlack);	
-  text_layer_set_text(text_layer, "00:00");
-  layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(text_layer));	
+  time_text_layer = text_layer_create(GRect(0, 46, 144, 80));
+  text_layer_set_font(time_text_layer, fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49));
+  text_layer_set_text_alignment(time_text_layer, GTextAlignmentCenter);
+  text_layer_set_text_color(time_text_layer, GColorBlack);	
+  text_layer_set_text(time_text_layer, "00:00");
+  layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));	
 	
   tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
  
@@ -65,7 +65,12 @@ void handle_init(void) {
 void handle_deinit(void) {
 //
   bluetooth_connection_service_unsubscribe();	
-  text_layer_destroy(text_layer);
+  bitmap_layer_destroy(layer_bkgd_img);
+  bitmap_layer_destroy(layer_conn_img);
+  gbitmap_destroy(img_bkgd);
+  gbitmap_destroy(img_bt_connect);
+  gbitmap_destroy(img_bt_disconnect);
+  text_layer_destroy(time_text_layer);
   window_destroy(my_window);
 }
 
