@@ -126,7 +126,7 @@ void handle_init(void) {
     time_text_layer = text_layer_create(GRect(0, 46, 144, 80));
     text_layer_set_font(time_text_layer, fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49));
     text_layer_set_text_alignment(time_text_layer, GTextAlignmentCenter);
-    text_layer_set_text_color(time_text_layer, GColorWhite);	
+    text_layer_set_text_color(time_text_layer, GColorScreaminGreen);	
     text_layer_set_background_color(time_text_layer, GColorBlack);
 	text_layer_set_text(time_text_layer, "00:00");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));	
@@ -134,7 +134,7 @@ void handle_init(void) {
     date_text_layer = text_layer_create(GRect(8, 4, 144, 30));
     text_layer_set_font(date_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
     text_layer_set_text_alignment(date_text_layer, GTextAlignmentLeft);
-    text_layer_set_text_color(date_text_layer, GColorWhite);	
+    text_layer_set_text_color(date_text_layer, GColorSpringBud);	
     text_layer_set_background_color(date_text_layer, GColorBlack);
     text_layer_set_text(date_text_layer, "Sun, Jan 00");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	

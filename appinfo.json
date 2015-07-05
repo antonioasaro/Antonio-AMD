@@ -9,6 +9,16 @@
     "resources": {
         "media": [
             {
+                "file": "images/disconnect.png",
+                "name": "IMAGE_DISCONNECT",
+                "type": "png"
+            },
+            {
+                "file": "images/connect.png",
+                "name": "IMAGE_CONNECT",
+                "type": "png"
+            },
+            {
                 "file": "images/amd_menu_icon.png",
                 "menuIcon": true,
                 "name": "IMAGE_AMD_MENU_ICON",
@@ -123,16 +133,6 @@
                 "file": "images/scene00007.png",
                 "name": "IMAGE_AMD_LOGO_00",
                 "type": "png"
-            },
-            {
-                "file": "images/disconnect.png",
-                "name": "IMAGE_DISCONNECT",
-                "type": "png"
-            },
-            {
-                "file": "images/connect.png",
-                "name": "IMAGE_CONNECT",
-                "type": "png"
             }
         ]
     },
@@ -142,7 +142,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.53",
+    "versionLabel": "1.54",
     "watchapp": {
         "watchface": true
     }
