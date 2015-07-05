@@ -9,6 +9,116 @@
     "resources": {
         "media": [
             {
+                "file": "images/scene00169.png",
+                "name": "IMAGE_AMD_LOGO_17",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00163.png",
+                "name": "IMAGE_AMD_LOGO_16",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00157.png",
+                "name": "IMAGE_AMD_LOGO_15",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00181.png",
+                "name": "IMAGE_AMD_LOGO_19",
+                "type": "png"
+            },
+            {
+                "file": "images/amd_logo_black.png",
+                "name": "IMAGE_AMD_LOGO_BLACK",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00175.png",
+                "name": "IMAGE_AMD_LOGO_18",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00091.png",
+                "name": "IMAGE_AMD_LOGO_14",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00085.png",
+                "name": "IMAGE_AMD_LOGO_13",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00079.png",
+                "name": "IMAGE_AMD_LOGO_12",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00073.png",
+                "name": "IMAGE_AMD_LOGO_11",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00067.png",
+                "name": "IMAGE_AMD_LOGO_10",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00061.png",
+                "name": "IMAGE_AMD_LOGO_09",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00055.png",
+                "name": "IMAGE_AMD_LOGO_08",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00049.png",
+                "name": "IMAGE_AMD_LOGO_07",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00043.png",
+                "name": "IMAGE_AMD_LOGO_06",
+                "type": "png"
+            },
+            {
+                "file": "images/amd_logo_final.png",
+                "name": "IMAGE_AMD_LOGO_FINAL",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00037.png",
+                "name": "IMAGE_AMD_LOGO_05",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00031.png",
+                "name": "IMAGE_AMD_LOGO_04",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00025.png",
+                "name": "IMAGE_AMD_LOGO_03",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00019.png",
+                "name": "IMAGE_AMD_LOGO_02",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00013.png",
+                "name": "IMAGE_AMD_LOGO_01",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00007.png",
+                "name": "IMAGE_AMD_LOGO_00",
+                "type": "png"
+            },
+            {
                 "file": "images/disconnect.png",
                 "name": "IMAGE_DISCONNECT",
                 "type": "png"
@@ -16,11 +126,6 @@
             {
                 "file": "images/connect.png",
                 "name": "IMAGE_CONNECT",
-                "type": "png"
-            },
-            {
-                "file": "images/amd_logo.png",
-                "name": "IMAGE_AMD_LOGO",
                 "type": "png"
             }
         ]
