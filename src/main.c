@@ -1,20 +1,20 @@
 #include <pebble.h>
 
-#define FRAMES 10
+#define FRAMES 11
 #define BKGD_FRAME 99
 	
 Window *my_window;
 TextLayer *time_text_layer;
 TextLayer *date_text_layer;
-BitmapLayer *layer_bkgd_img;
 BitmapLayer *layer_conn_img;
-GBitmap *bkgd_img;
+BitmapLayer *layer_bkgd_img;
 GBitmap *bt_connect_img;
 GBitmap *bt_disconnect_img;
+GBitmap *bkgd_img;
+static GBitmap *amd_img[FRAMES];
 
 static AppTimer *timer;
 static bool is_animating;
-static GBitmap *amd_img[FRAMES];
 
 //// prototypes
 static void handle_timer(void *data);
@@ -39,7 +39,7 @@ void setup_gbitmaps() {
 	amd_img[7] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_07);
 	amd_img[8] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_08);
 	amd_img[9] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_09);
-////	amd_img[10] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_10);
+	amd_img[10] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_10);
 ////	amd_img[11] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_11);
 ////	amd_img[12] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_12);
 ////	amd_img[13] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_13);
@@ -146,20 +146,23 @@ void handle_init(void) {
     layer_conn_img     = bitmap_layer_create(GRect(118, 12, 20, 20));
     bitmap_layer_set_bitmap(layer_conn_img, bt_connect_img);
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(layer_conn_img));	
-    bluetooth_connection_service_subscribe(&handle_bluetooth);
 
+	bluetooth_connection_service_subscribe(&handle_bluetooth);
     tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
  }
 
 void handle_deinit(void) {
-    bluetooth_connection_service_unsubscribe();	
-    bitmap_layer_destroy(layer_bkgd_img);
-    bitmap_layer_destroy(layer_conn_img);
-    gbitmap_destroy(bkgd_img);
     gbitmap_destroy(bt_connect_img);
     gbitmap_destroy(bt_disconnect_img);
+    gbitmap_destroy(bkgd_img);
+ 	for (int i=0; i<FRAMES; i++) gbitmap_destroy(amd_img[i]);
+    bitmap_layer_destroy(layer_conn_img);
+    bitmap_layer_destroy(layer_bkgd_img);
     text_layer_destroy(time_text_layer);
+    text_layer_destroy(date_text_layer);
     window_destroy(my_window);
+
+	bluetooth_connection_service_unsubscribe();	
 }
 
 int main(void) {
