@@ -1,6 +1,6 @@
 #include <pebble.h>
 
-#define FRAMES 12
+#define FRAMES 10
 #define BKGD_FRAME 99
 	
 Window *my_window;
@@ -29,17 +29,17 @@ void handle_bluetooth(bool connected) {
 }
 
 void setup_gbitmaps() {
-	amd_img[0] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_00);
-	amd_img[1] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_01);
-	amd_img[2] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_02);
-	amd_img[3] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_03);
-	amd_img[4] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_04);
-	amd_img[5] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_05);
-	amd_img[6] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_06);
-	amd_img[7] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_07);
-	amd_img[8] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_08);
-	amd_img[9] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_09);
-	amd_img[10] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_10);
+	amd_img[0] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_04);
+	amd_img[1] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_05);
+	amd_img[2] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_06);
+	amd_img[3] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_07);
+	amd_img[4] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_08);
+	amd_img[5] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_09);
+	amd_img[6] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_10);
+	amd_img[7] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_17);
+	amd_img[8] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_18);
+	amd_img[9] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_19);
+////	amd_img[10] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_10);
 ////	amd_img[11] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_11);
 ////	amd_img[12] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_12);
 ////	amd_img[13] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_13);
@@ -49,7 +49,7 @@ void setup_gbitmaps() {
 ////	amd_img[17] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_17);
 ////	amd_img[18] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_18);
 ////	amd_img[19] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_19);
-	amd_img[11] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_BLACK);
+////	amd_img[20] = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_BLACK);
 }
 
 void animate_amd_logo() {
@@ -123,7 +123,7 @@ void handle_init(void) {
 	window_set_background_color(my_window, GColorBlack);
     window_stack_push(my_window, true);
 
-    time_text_layer = text_layer_create(GRect(0, 46, 144, 80));
+    time_text_layer = text_layer_create(GRect(0, 42, 144, 80));
     text_layer_set_font(time_text_layer, fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49));
     text_layer_set_text_alignment(time_text_layer, GTextAlignmentCenter);
     text_layer_set_text_color(time_text_layer, GColorScreaminGreen);	

@@ -9,6 +9,11 @@
     "resources": {
         "media": [
             {
+                "file": "images/amd_logo_final.png",
+                "name": "IMAGE_AMD_LOGO_FINAL",
+                "type": "png"
+            },
+            {
                 "file": "images/disconnect.png",
                 "name": "IMAGE_DISCONNECT",
                 "type": "png"
@@ -97,11 +102,6 @@
             {
                 "file": "images/scene00043.png",
                 "name": "IMAGE_AMD_LOGO_06",
-                "type": "png"
-            },
-            {
-                "file": "images/amd_logo_final.png",
-                "name": "IMAGE_AMD_LOGO_FINAL",
                 "type": "png"
             },
             {
