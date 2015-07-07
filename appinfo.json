@@ -50,11 +50,6 @@
                 "type": "png"
             },
             {
-                "file": "images/amd_logo_black.png",
-                "name": "IMAGE_AMD_LOGO_BLACK",
-                "type": "png"
-            },
-            {
                 "file": "images/scene00175.png",
                 "name": "IMAGE_AMD_LOGO_18",
                 "type": "png"
@@ -142,7 +137,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.54",
+    "versionLabel": "1.56",
     "watchapp": {
         "watchface": true
     }
