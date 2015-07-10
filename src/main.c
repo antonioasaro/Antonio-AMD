@@ -151,7 +151,7 @@ void handle_init(void) {
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
  
     bkgd_img        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_FINAL);
-    layer_bkgd_img  = bitmap_layer_create(GRect(2, 100, 144, 68));
+    layer_bkgd_img  = bitmap_layer_create(GRect(0, 102, 144, 68));
     bitmap_layer_set_bitmap(layer_bkgd_img, bkgd_img);
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(layer_bkgd_img));	
  	

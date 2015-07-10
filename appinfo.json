@@ -9,15 +9,15 @@
     "resources": {
         "media": [
             {
+                "file": "images/amd_logo_final.png",
+                "name": "IMAGE_AMD_LOGO_FINAL",
+                "type": "png"
+            },
+            {
                 "characterRegex": "[0-9:]",
                 "file": "fonts/Roboto-Bold.ttf",
                 "name": "FONT_ROBOTO_BOLD_52",
                 "type": "font"
-            },
-            {
-                "file": "images/amd_logo_final.png",
-                "name": "IMAGE_AMD_LOGO_FINAL",
-                "type": "png"
             },
             {
                 "file": "images/disconnect.png",
@@ -143,7 +143,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.56",
+    "versionLabel": "1.57",
     "watchapp": {
         "watchface": true
     }
