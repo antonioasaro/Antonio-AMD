@@ -90,9 +90,9 @@ static void handle_timer(void *data) {
 		update_amd_logo(current_frame);
 		next_frame = current_frame + 1;
 		if (current_frame == (uint32_t) (FRAMES-1)) {
-	    	timer = app_timer_register(800, &handle_timer, (void *) next_frame);
+	    	timer = app_timer_register(999, &handle_timer, (void *) next_frame);
 		} else {
-	    	timer = app_timer_register(200, &handle_timer, (void *) next_frame);
+	    	timer = app_timer_register(166, &handle_timer, (void *) next_frame);
 		}
 		return;
 	}
@@ -134,10 +134,10 @@ void handle_init(void) {
 	window_set_background_color(my_window, GColorBlack);
     window_stack_push(my_window, true);
 
-    time_text_layer = text_layer_create(GRect(0, 42, 144, 80));
-    text_layer_set_font(time_text_layer, fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49));
+    time_text_layer = text_layer_create(GRect(0, 40, 144, 80));
+    text_layer_set_font(time_text_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ROBOTO_BOLD_52)));
     text_layer_set_text_alignment(time_text_layer, GTextAlignmentCenter);
-    text_layer_set_text_color(time_text_layer, GColorScreaminGreen);	
+    text_layer_set_text_color(time_text_layer, GColorBrightGreen);	
     text_layer_set_background_color(time_text_layer, GColorBlack);
 	text_layer_set_text(time_text_layer, "00:00");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));	
@@ -151,13 +151,13 @@ void handle_init(void) {
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
  
     bkgd_img        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_FINAL);
-    layer_bkgd_img  = bitmap_layer_create(GRect(2, 100, 144, 68));
+    layer_bkgd_img  = bitmap_layer_create(GRect(0, 102, 144, 68));
     bitmap_layer_set_bitmap(layer_bkgd_img, bkgd_img);
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(layer_bkgd_img));	
  	
     bt_connect_img     = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CONNECT);
     bt_disconnect_img  = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_DISCONNECT);
-    layer_conn_img     = bitmap_layer_create(GRect(118, 12, 20, 20));
+    layer_conn_img     = bitmap_layer_create(GRect(118, 10, 20, 20));
     bitmap_layer_set_bitmap(layer_conn_img, bt_connect_img);
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(layer_conn_img));	
 
