@@ -9,6 +9,66 @@
     "resources": {
         "media": [
             {
+                "file": "images/scene00073.png",
+                "name": "IMAGE_AMD_LOGO_11",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00181.png",
+                "name": "IMAGE_AMD_LOGO_19",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00175.png",
+                "name": "IMAGE_AMD_LOGO_18",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00169.png",
+                "name": "IMAGE_AMD_LOGO_17",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00163.png",
+                "name": "IMAGE_AMD_LOGO_16",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00157.png",
+                "name": "IMAGE_AMD_LOGO_15",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00091.png",
+                "name": "IMAGE_AMD_LOGO_14",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00085.png",
+                "name": "IMAGE_AMD_LOGO_13",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00079.png",
+                "name": "IMAGE_AMD_LOGO_12",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00067.png",
+                "name": "IMAGE_AMD_LOGO_10",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00061.png",
+                "name": "IMAGE_AMD_LOGO_09",
+                "type": "png"
+            },
+            {
+                "file": "images/scene00055.png",
+                "name": "IMAGE_AMD_LOGO_08",
+                "type": "png"
+            },
+            {
                 "file": "images/amd_logo_final.png",
                 "name": "IMAGE_AMD_LOGO_FINAL",
                 "type": "png"
@@ -33,66 +93,6 @@
                 "file": "images/amd_menu_icon.png",
                 "menuIcon": true,
                 "name": "IMAGE_AMD_MENU_ICON",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00169.png",
-                "name": "IMAGE_AMD_LOGO_17",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00163.png",
-                "name": "IMAGE_AMD_LOGO_16",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00157.png",
-                "name": "IMAGE_AMD_LOGO_15",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00181.png",
-                "name": "IMAGE_AMD_LOGO_19",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00175.png",
-                "name": "IMAGE_AMD_LOGO_18",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00091.png",
-                "name": "IMAGE_AMD_LOGO_14",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00085.png",
-                "name": "IMAGE_AMD_LOGO_13",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00079.png",
-                "name": "IMAGE_AMD_LOGO_12",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00073.png",
-                "name": "IMAGE_AMD_LOGO_11",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00067.png",
-                "name": "IMAGE_AMD_LOGO_10",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00061.png",
-                "name": "IMAGE_AMD_LOGO_09",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00055.png",
-                "name": "IMAGE_AMD_LOGO_08",
                 "type": "png"
             },
             {
@@ -143,7 +143,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.58",
+    "versionLabel": "1.6",
     "watchapp": {
         "watchface": true
     }
