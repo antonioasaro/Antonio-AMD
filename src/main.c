@@ -100,16 +100,17 @@ static void handle_timer(void *data) {
 
 void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
     // Need to be static because they're used by the system later.
-    static char date_text[] = "Sun, Jan 00";
-    static char wday_text[] = "Xxx";
-    static char mnth_text[] = "Xxx";
+    static char date_text[] = "Sun, Jan 00---------------------------";
+    static char wday_text[] = "XxxXxxXxxXxxXxx";
+    static char mnth_text[] = "YyyYyyYyyYyyYyy";
     static char wdat_text[] = "00";
     static char time_text[] = "00:00";
     char *time_format;
 
-    strftime(wday_text, sizeof(wday_text), "%A", tick_time);
-    strftime(mnth_text, sizeof(mnth_text), "%B", tick_time);
+    strftime(wday_text, sizeof(wday_text), "%a", tick_time);
+    strftime(mnth_text, sizeof(mnth_text), "%b", tick_time);
 	strftime(wdat_text, sizeof(wdat_text), "%e", tick_time);
+
 	strcpy(date_text, wday_text); strcat(date_text, ", ");
 	strcat(date_text, mnth_text); strcat(date_text, " ");
 	strcat(date_text, wdat_text);
