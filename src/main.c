@@ -100,7 +100,7 @@ static void handle_timer(void *data) {
 
 void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
     // Need to be static because they're used by the system later.
-    static char date_text[] = "Sun, Jan 00---------------------------";
+    static char date_text[] = "Sun Jan 00---------------------------";
     static char wday_text[] = "XxxXxxXxxXxxXxx";
     static char mnth_text[] = "YyyYyyYyyYyyYyy";
     static char wdat_text[] = "00";
@@ -111,7 +111,7 @@ void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
     strftime(mnth_text, sizeof(mnth_text), "%b", tick_time);
 	strftime(wdat_text, sizeof(wdat_text), "%e", tick_time);
 
-	strcpy(date_text, wday_text); strcat(date_text, ", ");
+	strcpy(date_text, wday_text); strcat(date_text, " ");
 	strcat(date_text, mnth_text); strcat(date_text, " ");
 	strcat(date_text, wdat_text);
     text_layer_set_text(date_text_layer, date_text);
@@ -148,7 +148,7 @@ void handle_init(void) {
     text_layer_set_text_alignment(date_text_layer, GTextAlignmentLeft);
     text_layer_set_text_color(date_text_layer, GColorSpringBud);	
     text_layer_set_background_color(date_text_layer, GColorBlack);
-    text_layer_set_text(date_text_layer, "Sun, Jan 00");
+    text_layer_set_text(date_text_layer, "Sun Jan 1");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
  
     bkgd_img        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_FINAL);

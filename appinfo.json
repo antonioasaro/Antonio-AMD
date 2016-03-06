@@ -4,74 +4,121 @@
         ""
     ],
     "companyName": "antonio_asaro",
+    "enableMultiJS": false,
     "longName": "Antonio-AMD",
     "projectType": "native",
     "resources": {
         "media": [
             {
+                "file": "images/disconnect.png",
+                "name": "IMAGE_DISCONNECT",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/connect.png",
+                "name": "IMAGE_CONNECT",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/amd_menu_icon.png",
+                "menuIcon": true,
+                "name": "IMAGE_AMD_MENU_ICON",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00049.png",
+                "name": "IMAGE_AMD_LOGO_07",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00043.png",
+                "name": "IMAGE_AMD_LOGO_06",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00037.png",
+                "name": "IMAGE_AMD_LOGO_05",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00031.png",
+                "name": "IMAGE_AMD_LOGO_04",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00025.png",
+                "name": "IMAGE_AMD_LOGO_03",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00019.png",
+                "name": "IMAGE_AMD_LOGO_02",
+                "type": "bitmap"
+            },
+            {
                 "file": "images/scene00073.png",
                 "name": "IMAGE_AMD_LOGO_11",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00181.png",
                 "name": "IMAGE_AMD_LOGO_19",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00175.png",
                 "name": "IMAGE_AMD_LOGO_18",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00169.png",
                 "name": "IMAGE_AMD_LOGO_17",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00163.png",
                 "name": "IMAGE_AMD_LOGO_16",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00157.png",
                 "name": "IMAGE_AMD_LOGO_15",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00091.png",
                 "name": "IMAGE_AMD_LOGO_14",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00085.png",
                 "name": "IMAGE_AMD_LOGO_13",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00079.png",
                 "name": "IMAGE_AMD_LOGO_12",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00067.png",
                 "name": "IMAGE_AMD_LOGO_10",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00061.png",
                 "name": "IMAGE_AMD_LOGO_09",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00055.png",
                 "name": "IMAGE_AMD_LOGO_08",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/amd_logo_final.png",
                 "name": "IMAGE_AMD_LOGO_FINAL",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "characterRegex": "[0-9:]",
@@ -80,60 +127,14 @@
                 "type": "font"
             },
             {
-                "file": "images/disconnect.png",
-                "name": "IMAGE_DISCONNECT",
-                "type": "png"
-            },
-            {
-                "file": "images/connect.png",
-                "name": "IMAGE_CONNECT",
-                "type": "png"
-            },
-            {
-                "file": "images/amd_menu_icon.png",
-                "menuIcon": true,
-                "name": "IMAGE_AMD_MENU_ICON",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00049.png",
-                "name": "IMAGE_AMD_LOGO_07",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00043.png",
-                "name": "IMAGE_AMD_LOGO_06",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00037.png",
-                "name": "IMAGE_AMD_LOGO_05",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00031.png",
-                "name": "IMAGE_AMD_LOGO_04",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00025.png",
-                "name": "IMAGE_AMD_LOGO_03",
-                "type": "png"
-            },
-            {
-                "file": "images/scene00019.png",
-                "name": "IMAGE_AMD_LOGO_02",
-                "type": "png"
-            },
-            {
                 "file": "images/scene00013.png",
                 "name": "IMAGE_AMD_LOGO_01",
-                "type": "png"
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00007.png",
                 "name": "IMAGE_AMD_LOGO_00",
-                "type": "png"
+                "type": "bitmap"
             }
         ]
     },
@@ -143,7 +144,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.6",
+    "versionLabel": "1.71",
     "watchapp": {
         "watchface": true
     }
