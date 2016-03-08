@@ -70,6 +70,7 @@ static void sync_error_callback(DictionaryResult dict_error, AppMessageResult ap
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
   APP_LOG(APP_LOG_LEVEL_INFO, "sync_tuple_changed_callback with key: %d", (int) key);	
   switch (key) {
+/* 
     case WEATHER_ICON_KEY:
       if (s_icon_bitmap) {
         gbitmap_destroy(s_icon_bitmap);
@@ -79,15 +80,15 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
       bitmap_layer_set_compositing_mode(s_icon_layer, GCompOpSet);
       bitmap_layer_set_bitmap(s_icon_layer, s_icon_bitmap);
       break;
-
+*/
     case WEATHER_TEMPERATURE_KEY:
-      // App Sync keeps new_tuple in s_sync_buffer, so we may use it directly
       text_layer_set_text(temp_text_layer, new_tuple->value->cstring);
       break;
-
+/*
     case WEATHER_CITY_KEY:
       text_layer_set_text(s_city_layer, new_tuple->value->cstring);
       break;
+*/
   }
 }
 
@@ -127,7 +128,7 @@ void animate_amd_logo() {
 }
 
 void update_amd_logo(int current_frame) {
-	app_log(APP_LOG_LEVEL_INFO, "main.c", 68, "update_amd_log - %d", current_frame);
+	// app_log(APP_LOG_LEVEL_INFO, "main.c", 68, "update_amd_log - %d", current_frame);
 	if ((current_frame >= 0) && (current_frame < FRAMES)) {
 		bitmap_layer_set_bitmap(layer_bkgd_img, fifo_img[(current_frame % FIFO_DEPTH)]);
 		if ((current_frame > 1) && (current_frame < FRAMES-2)) {
@@ -161,12 +162,13 @@ static void handle_timer(void *data) {
 }
 
 void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
-    // Need to be static because they're used by the system later.
+	// Need to be static because they're used by the system later.
     static char date_text[] = "Sun Jan 00---------------------------";
     static char wday_text[] = "XxxXxxXxxXxxXxx";
     static char mnth_text[] = "YyyYyyYyyYyyYyy";
     static char wdat_text[] = "00";
     static char time_text[] = "00:00";
+	static int show = 0;
     char *time_format;
 
     strftime(wday_text, sizeof(wday_text), "%a", tick_time);
@@ -190,7 +192,8 @@ void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
     }
     text_layer_set_text(time_text_layer, time_text);
 	animate_amd_logo();
-	request_weather();
+	if (show == 0) request_weather();
+	show = (show + 1) % 30;
 }
 
 void handle_init(void) {
@@ -205,23 +208,24 @@ void handle_init(void) {
     text_layer_set_background_color(date_text_layer, GColorBlack);
     text_layer_set_text(date_text_layer, "Sun Jan 1");
  
-    temp_text_layer = text_layer_create(GRect(7, 24, 144, 30));
+    temp_text_layer = text_layer_create(GRect(8, 24, 144, 30));
     text_layer_set_font(temp_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
     text_layer_set_text_alignment(temp_text_layer, GTextAlignmentLeft);
     text_layer_set_text_color(temp_text_layer, GColorSpringBud);	
     text_layer_set_background_color(temp_text_layer, GColorBlack);
     text_layer_set_text(temp_text_layer, "10\u00B0C");
 	
-    time_text_layer = text_layer_create(GRect(0, 48, 144, 80));
+    time_text_layer = text_layer_create(GRect(0, 46, 144, 80));
     text_layer_set_font(time_text_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ROBOTO_BOLD_52)));
     text_layer_set_text_alignment(time_text_layer, GTextAlignmentCenter);
     text_layer_set_text_color(time_text_layer, GColorBrightGreen);	
     text_layer_set_background_color(time_text_layer, GColorBlack);
 	text_layer_set_text(time_text_layer, "00:00");
 
+	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(temp_text_layer));
 	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
-	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));	
+	
  
     bkgd_img        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_FINAL);
     layer_bkgd_img  = bitmap_layer_create(GRect(0, 102, 144, 68));
@@ -236,6 +240,14 @@ void handle_init(void) {
 
 	bluetooth_connection_service_subscribe(&handle_bluetooth);
     tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
+	
+	app_message_open(64, 64);
+    Tuplet initial_values[] = {
+    	TupletInteger(WEATHER_ICON_KEY, (uint8_t) 1),
+    	TupletCString(WEATHER_TEMPERATURE_KEY, "1234\u00B0C"),
+    	TupletCString(WEATHER_CITY_KEY, "St Pebblesburg"),
+  	};
+	app_sync_init(&s_sync, s_sync_buffer, sizeof(s_sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
  }
 
 void handle_deinit(void) {
