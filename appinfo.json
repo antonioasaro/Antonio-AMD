@@ -1,7 +1,11 @@
 {
-    "appKeys": {},
+    "appKeys": {
+        "WEATHER_CITY_KEY": 2,
+        "WEATHER_ICON_KEY": 0,
+        "WEATHER_TEMPERATURE_KEY": 1
+    },
     "capabilities": [
-        ""
+        "location"
     ],
     "companyName": "antonio_asaro",
     "enableMultiJS": false,

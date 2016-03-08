@@ -13,6 +13,7 @@ GBitmap *bt_connect_img;
 GBitmap *bt_disconnect_img;
 GBitmap *bkgd_img;
 GBitmap *fifo_img[FIFO_DEPTH];
+
 const int AMD_LOGO_RESOURCE_IDS[] = {
   RESOURCE_ID_IMAGE_AMD_LOGO_00,
   RESOURCE_ID_IMAGE_AMD_LOGO_01,
@@ -39,8 +40,69 @@ const int AMD_LOGO_RESOURCE_IDS[] = {
 static AppTimer *timer;
 static bool is_animating;
 
+enum WeatherKey {
+  WEATHER_ICON_KEY = 0x0,         // TUPLE_INT
+  WEATHER_TEMPERATURE_KEY = 0x1,  // TUPLE_CSTRING
+  WEATHER_CITY_KEY = 0x2,         // TUPLE_CSTRING
+};
+
+static const uint32_t WEATHER_ICONS[] = {
+  0, // RESOURCE_ID_IMAGE_SUN, // 0
+  1, // RESOURCE_ID_IMAGE_CLOUD, // 1
+  2, // RESOURCE_ID_IMAGE_RAIN, // 2
+  3  // RESOURCE_ID_IMAGE_SNOW // 3
+};
+
+static TextLayer *temp_text_layer;
+static TextLayer *s_city_layer;
+static BitmapLayer *s_icon_layer;
+static GBitmap *s_icon_bitmap = NULL;
+static AppSync s_sync;
+static uint8_t s_sync_buffer[64];
+
 //// prototypes
 static void handle_timer(void *data);
+
+static void sync_error_callback(DictionaryResult dict_error, AppMessageResult app_message_error, void *context) {
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "App Message Sync Error: %d", app_message_error);
+}
+
+static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
+  APP_LOG(APP_LOG_LEVEL_INFO, "sync_tuple_changed_callback with key: %d", (int) key);	
+  switch (key) {
+    case WEATHER_ICON_KEY:
+      if (s_icon_bitmap) {
+        gbitmap_destroy(s_icon_bitmap);
+      }
+
+      s_icon_bitmap = gbitmap_create_with_resource(WEATHER_ICONS[new_tuple->value->uint8]);
+      bitmap_layer_set_compositing_mode(s_icon_layer, GCompOpSet);
+      bitmap_layer_set_bitmap(s_icon_layer, s_icon_bitmap);
+      break;
+
+    case WEATHER_TEMPERATURE_KEY:
+      // App Sync keeps new_tuple in s_sync_buffer, so we may use it directly
+      text_layer_set_text(temp_text_layer, new_tuple->value->cstring);
+      break;
+
+    case WEATHER_CITY_KEY:
+      text_layer_set_text(s_city_layer, new_tuple->value->cstring);
+      break;
+  }
+}
+
+static void request_weather(void) {
+  DictionaryIterator *iter;
+	
+  APP_LOG(APP_LOG_LEVEL_INFO, "requesting weather");
+  app_message_outbox_begin(&iter);
+	if (!iter) return; 		// Error creating outbound message
+
+  int value = 1;
+  dict_write_int(iter, 1, &value, sizeof(int), true);
+  dict_write_end(iter);
+  app_message_outbox_send();
+}
 
 void handle_bluetooth(bool connected) {
     if (connected) {
@@ -128,6 +190,7 @@ void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
     }
     text_layer_set_text(time_text_layer, time_text);
 	animate_amd_logo();
+	request_weather();
 }
 
 void handle_init(void) {
@@ -135,21 +198,30 @@ void handle_init(void) {
 	window_set_background_color(my_window, GColorBlack);
     window_stack_push(my_window, true);
 
-    time_text_layer = text_layer_create(GRect(0, 40, 144, 80));
-    text_layer_set_font(time_text_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ROBOTO_BOLD_52)));
-    text_layer_set_text_alignment(time_text_layer, GTextAlignmentCenter);
-    text_layer_set_text_color(time_text_layer, GColorBrightGreen);	
-    text_layer_set_background_color(time_text_layer, GColorBlack);
-	text_layer_set_text(time_text_layer, "00:00");
-    layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));	
-	
-    date_text_layer = text_layer_create(GRect(8, 4, 144, 30));
+    date_text_layer = text_layer_create(GRect(8, 2, 144, 30));
     text_layer_set_font(date_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
     text_layer_set_text_alignment(date_text_layer, GTextAlignmentLeft);
     text_layer_set_text_color(date_text_layer, GColorSpringBud);	
     text_layer_set_background_color(date_text_layer, GColorBlack);
     text_layer_set_text(date_text_layer, "Sun Jan 1");
-    layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
+ 
+    temp_text_layer = text_layer_create(GRect(7, 24, 144, 30));
+    text_layer_set_font(temp_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+    text_layer_set_text_alignment(temp_text_layer, GTextAlignmentLeft);
+    text_layer_set_text_color(temp_text_layer, GColorSpringBud);	
+    text_layer_set_background_color(temp_text_layer, GColorBlack);
+    text_layer_set_text(temp_text_layer, "10\u00B0C");
+	
+    time_text_layer = text_layer_create(GRect(0, 48, 144, 80));
+    text_layer_set_font(time_text_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ROBOTO_BOLD_52)));
+    text_layer_set_text_alignment(time_text_layer, GTextAlignmentCenter);
+    text_layer_set_text_color(time_text_layer, GColorBrightGreen);	
+    text_layer_set_background_color(time_text_layer, GColorBlack);
+	text_layer_set_text(time_text_layer, "00:00");
+
+    layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(temp_text_layer));
+	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
+	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));	
  
     bkgd_img        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_FINAL);
     layer_bkgd_img  = bitmap_layer_create(GRect(0, 102, 144, 68));
