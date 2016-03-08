@@ -201,15 +201,15 @@ void handle_init(void) {
 	window_set_background_color(my_window, GColorBlack);
     window_stack_push(my_window, true);
 
-    date_text_layer = text_layer_create(GRect(8, 2, 144, 30));
+    date_text_layer = text_layer_create(GRect(8, 0, 144, 30));
     text_layer_set_font(date_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
     text_layer_set_text_alignment(date_text_layer, GTextAlignmentLeft);
-    text_layer_set_text_color(date_text_layer, GColorSpringBud);	
+    text_layer_set_text_color(date_text_layer, GColorIcterine);	
     text_layer_set_background_color(date_text_layer, GColorBlack);
     text_layer_set_text(date_text_layer, "Sun Jan 1");
  
     temp_text_layer = text_layer_create(GRect(8, 24, 144, 30));
-    text_layer_set_font(temp_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+    text_layer_set_font(temp_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
     text_layer_set_text_alignment(temp_text_layer, GTextAlignmentLeft);
     text_layer_set_text_color(temp_text_layer, GColorSpringBud);	
     text_layer_set_background_color(temp_text_layer, GColorBlack);
@@ -222,10 +222,9 @@ void handle_init(void) {
     text_layer_set_background_color(time_text_layer, GColorBlack);
 	text_layer_set_text(time_text_layer, "00:00");
 
-	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));
-    layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(temp_text_layer));
 	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
-	
+    layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(temp_text_layer));	
+	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));
  
     bkgd_img        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_FINAL);
     layer_bkgd_img  = bitmap_layer_create(GRect(0, 102, 144, 68));
