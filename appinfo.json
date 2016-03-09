@@ -14,6 +14,30 @@
     "resources": {
         "media": [
             {
+                "file": "images/snow-color.png",
+                "name": "IMAGE_SNOW",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "images/rain-color.png",
+                "name": "IMAGE_RAIN",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "images/cloud-color.png",
+                "name": "IMAGE_CLOUD",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "images/sun-color.png",
+                "name": "IMAGE_SUN",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
                 "file": "images/disconnect.png",
                 "name": "IMAGE_DISCONNECT",
                 "type": "bitmap"
@@ -148,7 +172,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.73",
+    "versionLabel": "1.8",
     "watchapp": {
         "watchface": true
     }

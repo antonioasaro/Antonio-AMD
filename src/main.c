@@ -47,10 +47,10 @@ enum WeatherKey {
 };
 
 static const uint32_t WEATHER_ICONS[] = {
-  0, // RESOURCE_ID_IMAGE_SUN, // 0
-  1, // RESOURCE_ID_IMAGE_CLOUD, // 1
-  2, // RESOURCE_ID_IMAGE_RAIN, // 2
-  3  // RESOURCE_ID_IMAGE_SNOW // 3
+  RESOURCE_ID_IMAGE_SUN,
+  RESOURCE_ID_IMAGE_CLOUD,
+  RESOURCE_ID_IMAGE_RAIN,
+  RESOURCE_ID_IMAGE_SNOW
 };
 
 static TextLayer *temp_text_layer;
@@ -70,17 +70,15 @@ static void sync_error_callback(DictionaryResult dict_error, AppMessageResult ap
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
   APP_LOG(APP_LOG_LEVEL_INFO, "sync_tuple_changed_callback with key: %d", (int) key);	
   switch (key) {
-/* 
     case WEATHER_ICON_KEY:
       if (s_icon_bitmap) {
         gbitmap_destroy(s_icon_bitmap);
       }
-
       s_icon_bitmap = gbitmap_create_with_resource(WEATHER_ICONS[new_tuple->value->uint8]);
       bitmap_layer_set_compositing_mode(s_icon_layer, GCompOpSet);
       bitmap_layer_set_bitmap(s_icon_layer, s_icon_bitmap);
       break;
-*/
+
     case WEATHER_TEMPERATURE_KEY:
       text_layer_set_text(temp_text_layer, new_tuple->value->cstring);
       break;
@@ -204,9 +202,10 @@ void handle_init(void) {
     date_text_layer = text_layer_create(GRect(8, 0, 144, 30));
     text_layer_set_font(date_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
     text_layer_set_text_alignment(date_text_layer, GTextAlignmentLeft);
-    text_layer_set_text_color(date_text_layer, GColorIcterine);	
+    text_layer_set_text_color(date_text_layer, GColorSpringBud);	
     text_layer_set_background_color(date_text_layer, GColorBlack);
     text_layer_set_text(date_text_layer, "Sun Jan 1");
+	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
  
     temp_text_layer = text_layer_create(GRect(8, 24, 144, 30));
     text_layer_set_font(temp_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
@@ -214,6 +213,7 @@ void handle_init(void) {
     text_layer_set_text_color(temp_text_layer, GColorSpringBud);	
     text_layer_set_background_color(temp_text_layer, GColorBlack);
     text_layer_set_text(temp_text_layer, "10\u00B0C");
+    layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(temp_text_layer));	
 	
     time_text_layer = text_layer_create(GRect(0, 46, 144, 80));
     text_layer_set_font(time_text_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ROBOTO_BOLD_52)));
@@ -221,11 +221,11 @@ void handle_init(void) {
     text_layer_set_text_color(time_text_layer, GColorBrightGreen);	
     text_layer_set_background_color(time_text_layer, GColorBlack);
 	text_layer_set_text(time_text_layer, "00:00");
-
-	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
-    layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(temp_text_layer));	
 	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(time_text_layer));
- 
+
+	s_icon_layer = bitmap_layer_create(GRect(48, 27, 20, 20));
+    layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(s_icon_layer));
+
     bkgd_img        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_FINAL);
     layer_bkgd_img  = bitmap_layer_create(GRect(0, 102, 144, 68));
     bitmap_layer_set_bitmap(layer_bkgd_img, bkgd_img);
