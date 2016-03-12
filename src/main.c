@@ -14,6 +14,7 @@ GBitmap *bt_disconnect_img;
 GBitmap *bkgd_img;
 GBitmap *fifo_img[FIFO_DEPTH];
 
+
 const int AMD_LOGO_RESOURCE_IDS[] = {
   RESOURCE_ID_IMAGE_AMD_LOGO_00,
   RESOURCE_ID_IMAGE_AMD_LOGO_01,
