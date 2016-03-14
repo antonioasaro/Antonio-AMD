@@ -5,7 +5,8 @@
         "WEATHER_TEMPERATURE_KEY": 1
     },
     "capabilities": [
-        "location"
+        "location",
+        "configurable"
     ],
     "companyName": "antonio_asaro",
     "enableMultiJS": false,
@@ -13,6 +14,48 @@
     "projectType": "native",
     "resources": {
         "media": [
+            {
+                "file": "images/disconnect_bw_20x20.png",
+                "name": "IMAGE_DISCONNECT_BW",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/connect_bw_20x20.png",
+                "name": "IMAGE_CONNECT_BW",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/RTG-Logo_144x51.png",
+                "name": "RTG_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/mantle-powered-by-amd_144x51.png",
+                "name": "MANTLE_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/AMD_Logo_b_on_w_144x51.png",
+                "name": "AMD_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/AMD_Radeon_logo_144x51.png",
+                "name": "AMD_RADEON_LOGO",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "images/radeon_software_crimson_logo.png",
+                "name": "RADEON_SOFTWARE_CRIMSON_LOGO",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
             {
                 "file": "images/sun-color.png",
                 "name": "IMAGE_SUN",

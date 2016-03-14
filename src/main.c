@@ -11,7 +11,6 @@ BitmapLayer *layer_conn_img;
 BitmapLayer *layer_bkgd_img;
 GBitmap *bt_connect_img;
 GBitmap *bt_disconnect_img;
-GBitmap *bkgd_img;
 GBitmap *fifo_img[FIFO_DEPTH];
 
 
@@ -37,6 +36,20 @@ const int AMD_LOGO_RESOURCE_IDS[] = {
   RESOURCE_ID_IMAGE_AMD_LOGO_18,
   RESOURCE_ID_IMAGE_AMD_LOGO_19
 };
+
+const int AMD_LOGO_BACKGROUND_RESOURCE_IDS[] = {
+#if defined(PBL_COLOR)
+  RESOURCE_ID_IMAGE_AMD_LOGO_FINAL,
+  RESOURCE_ID_AMD_RADEON_LOGO,
+  RESOURCE_ID_RADEON_SOFTWARE_CRIMSON_LOGO
+#elif defined(PBL_BW)
+  RESOURCE_ID_AMD_LOGO_BLACK,
+  RESOURCE_ID_MANTLE_LOGO_BLACK,
+  RESOURCE_ID_RTG_LOGO_BLACK
+#endif
+};
+
+GBitmap *bkgd_amd_img[ARRAY_LENGTH(AMD_LOGO_BACKGROUND_RESOURCE_IDS)];
 
 static AppTimer *timer;
 static bool is_animating;
@@ -127,6 +140,7 @@ void animate_amd_logo() {
 }
 
 void update_amd_logo(int current_frame) {
+     static unsigned int  amd_logo_index = 0;
 	// app_log(APP_LOG_LEVEL_INFO, "main.c", 68, "update_amd_log - %d", current_frame);
 	if ((current_frame >= 0) && (current_frame < FRAMES)) {
 		bitmap_layer_set_bitmap(layer_bkgd_img, fifo_img[(current_frame % FIFO_DEPTH)]);
@@ -135,8 +149,13 @@ void update_amd_logo(int current_frame) {
 			fifo_img[((current_frame-2) % FIFO_DEPTH)] = gbitmap_create_with_resource(AMD_LOGO_RESOURCE_IDS[current_frame + 2]);
 		}
 	} else {
-	    bitmap_layer_set_bitmap(layer_bkgd_img, bkgd_img);
-	}
+       amd_logo_index++;
+        
+        if (amd_logo_index == ARRAY_LENGTH(AMD_LOGO_BACKGROUND_RESOURCE_IDS))
+            amd_logo_index = 0;
+        
+        bitmap_layer_set_bitmap(layer_bkgd_img, bkgd_amd_img[amd_logo_index]);
+    }
 }
 
 static void handle_timer(void *data) {
@@ -227,13 +246,21 @@ void handle_init(void) {
 	s_icon_layer = bitmap_layer_create(GRect(48, 27, 20, 20));
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(s_icon_layer));
 
-    bkgd_img        = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_AMD_LOGO_FINAL);
+    for (unsigned int i = 0; i < ARRAY_LENGTH(AMD_LOGO_BACKGROUND_RESOURCE_IDS); i++) {
+        bkgd_amd_img[i] = gbitmap_create_with_resource(AMD_LOGO_BACKGROUND_RESOURCE_IDS[i]);
+    }
+    
     layer_bkgd_img  = bitmap_layer_create(GRect(0, 102, 144, 68));
-    bitmap_layer_set_bitmap(layer_bkgd_img, bkgd_img);
+    bitmap_layer_set_bitmap(layer_bkgd_img, bkgd_amd_img[0]);
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(layer_bkgd_img));	
  	
+#if defined(PBL_COLOR)
     bt_connect_img     = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CONNECT);
     bt_disconnect_img  = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_DISCONNECT);
+#elif defined(PBL_BW)
+    bt_connect_img     = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CONNECT_BW);
+    bt_disconnect_img  = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_DISCONNECT_BW);
+#endif
     layer_conn_img     = bitmap_layer_create(GRect(118, 10, 20, 20));
     bitmap_layer_set_bitmap(layer_conn_img, bt_connect_img);
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(layer_conn_img));	
@@ -253,7 +280,9 @@ void handle_init(void) {
 void handle_deinit(void) {
     gbitmap_destroy(bt_connect_img);
     gbitmap_destroy(bt_disconnect_img);
-    gbitmap_destroy(bkgd_img);
+    for (unsigned int i = 0; i < ARRAY_LENGTH(AMD_LOGO_BACKGROUND_RESOURCE_IDS); i++) {
+        gbitmap_destroy(bkgd_amd_img[i]);
+    }
  	for (int i=0; i<FIFO_DEPTH; i++) gbitmap_destroy(fifo_img[i]);
     bitmap_layer_destroy(layer_conn_img);
     bitmap_layer_destroy(layer_bkgd_img);
