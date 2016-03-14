@@ -5,7 +5,8 @@
         "WEATHER_TEMPERATURE_KEY": 1
     },
     "capabilities": [
-        "location"
+        "location",
+        "configurable"
     ],
     "companyName": "antonio_asaro",
     "enableMultiJS": false,
@@ -14,20 +15,44 @@
     "resources": {
         "media": [
             {
-                "file": "images/snow-color.png",
-                "name": "IMAGE_SNOW",
+                "file": "images/disconnect_bw_20x20.png",
+                "name": "IMAGE_DISCONNECT_BW",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/connect_bw_20x20.png",
+                "name": "IMAGE_CONNECT_BW",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/RTG-Logo_144x51.png",
+                "name": "RTG_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/mantle-powered-by-amd_144x51.png",
+                "name": "MANTLE_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/AMD_Logo_b_on_w_144x51.png",
+                "name": "AMD_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/AMD_Radeon_logo_144x51.png",
+                "name": "AMD_RADEON_LOGO",
                 "targetPlatforms": null,
                 "type": "bitmap"
             },
             {
-                "file": "images/rain-color.png",
-                "name": "IMAGE_RAIN",
-                "targetPlatforms": null,
-                "type": "bitmap"
-            },
-            {
-                "file": "images/cloud-color.png",
-                "name": "IMAGE_CLOUD",
+                "file": "images/radeon_software_crimson_logo.png",
+                "name": "RADEON_SOFTWARE_CRIMSON_LOGO",
                 "targetPlatforms": null,
                 "type": "bitmap"
             },
@@ -38,54 +63,9 @@
                 "type": "bitmap"
             },
             {
-                "file": "images/disconnect.png",
-                "name": "IMAGE_DISCONNECT",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/connect.png",
-                "name": "IMAGE_CONNECT",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/amd_menu_icon.png",
-                "menuIcon": true,
-                "name": "IMAGE_AMD_MENU_ICON",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/scene00049.png",
-                "name": "IMAGE_AMD_LOGO_07",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/scene00043.png",
-                "name": "IMAGE_AMD_LOGO_06",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/scene00037.png",
-                "name": "IMAGE_AMD_LOGO_05",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/scene00031.png",
-                "name": "IMAGE_AMD_LOGO_04",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/scene00025.png",
-                "name": "IMAGE_AMD_LOGO_03",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/scene00019.png",
-                "name": "IMAGE_AMD_LOGO_02",
-                "type": "bitmap"
-            },
-            {
-                "file": "images/scene00073.png",
-                "name": "IMAGE_AMD_LOGO_11",
+                "file": "images/snow-color.png",
+                "name": "IMAGE_SNOW",
+                "targetPlatforms": null,
                 "type": "bitmap"
             },
             {
@@ -129,6 +109,11 @@
                 "type": "bitmap"
             },
             {
+                "file": "images/scene00073.png",
+                "name": "IMAGE_AMD_LOGO_11",
+                "type": "bitmap"
+            },
+            {
                 "file": "images/scene00067.png",
                 "name": "IMAGE_AMD_LOGO_10",
                 "type": "bitmap"
@@ -144,15 +129,34 @@
                 "type": "bitmap"
             },
             {
-                "file": "images/amd_logo_final.png",
-                "name": "IMAGE_AMD_LOGO_FINAL",
+                "file": "images/scene00049.png",
+                "name": "IMAGE_AMD_LOGO_07",
                 "type": "bitmap"
             },
             {
-                "characterRegex": "[0-9:]",
-                "file": "fonts/Roboto-Bold.ttf",
-                "name": "FONT_ROBOTO_BOLD_52",
-                "type": "font"
+                "file": "images/scene00043.png",
+                "name": "IMAGE_AMD_LOGO_06",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00037.png",
+                "name": "IMAGE_AMD_LOGO_05",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00031.png",
+                "name": "IMAGE_AMD_LOGO_04",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00025.png",
+                "name": "IMAGE_AMD_LOGO_03",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/scene00019.png",
+                "name": "IMAGE_AMD_LOGO_02",
+                "type": "bitmap"
             },
             {
                 "file": "images/scene00013.png",
@@ -163,12 +167,52 @@
                 "file": "images/scene00007.png",
                 "name": "IMAGE_AMD_LOGO_00",
                 "type": "bitmap"
+            },
+            {
+                "file": "images/rain-color.png",
+                "name": "IMAGE_RAIN",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "images/disconnect.png",
+                "name": "IMAGE_DISCONNECT",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/connect.png",
+                "name": "IMAGE_CONNECT",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/cloud-color.png",
+                "name": "IMAGE_CLOUD",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "images/amd_menu_icon.png",
+                "menuIcon": true,
+                "name": "IMAGE_AMD_MENU_ICON",
+                "type": "bitmap"
+            },
+            {
+                "file": "images/amd_logo_final.png",
+                "name": "IMAGE_AMD_LOGO_FINAL",
+                "type": "bitmap"
+            },
+            {
+                "characterRegex": "[0-9:]",
+                "file": "fonts/Roboto-Bold.ttf",
+                "name": "FONT_ROBOTO_BOLD_52",
+                "type": "font"
             }
         ]
     },
     "sdkVersion": "3",
     "shortName": "Antonio-AMD",
     "targetPlatforms": [
+        "aplite",
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
