@@ -15,48 +15,6 @@
     "resources": {
         "media": [
             {
-                "file": "images/disconnect_bw_20x20.png",
-                "name": "IMAGE_DISCONNECT_BW",
-                "targetPlatforms": null,
-                "type": "png"
-            },
-            {
-                "file": "images/connect_bw_20x20.png",
-                "name": "IMAGE_CONNECT_BW",
-                "targetPlatforms": null,
-                "type": "png"
-            },
-            {
-                "file": "images/RTG-Logo_144x51.png",
-                "name": "RTG_LOGO_BLACK",
-                "targetPlatforms": null,
-                "type": "png"
-            },
-            {
-                "file": "images/mantle-powered-by-amd_144x51.png",
-                "name": "MANTLE_LOGO_BLACK",
-                "targetPlatforms": null,
-                "type": "png"
-            },
-            {
-                "file": "images/AMD_Logo_b_on_w_144x51.png",
-                "name": "AMD_LOGO_BLACK",
-                "targetPlatforms": null,
-                "type": "png"
-            },
-            {
-                "file": "images/AMD_Radeon_logo_144x51.png",
-                "name": "AMD_RADEON_LOGO",
-                "targetPlatforms": null,
-                "type": "bitmap"
-            },
-            {
-                "file": "images/radeon_software_crimson_logo.png",
-                "name": "RADEON_SOFTWARE_CRIMSON_LOGO",
-                "targetPlatforms": null,
-                "type": "bitmap"
-            },
-            {
                 "file": "images/sun-color.png",
                 "name": "IMAGE_SUN",
                 "targetPlatforms": null,
@@ -175,9 +133,33 @@
                 "type": "bitmap"
             },
             {
+                "file": "images/radeon_software_crimson_logo.png",
+                "name": "RADEON_SOFTWARE_CRIMSON_LOGO",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "images/mantle-powered-by-amd_144x51.png",
+                "name": "MANTLE_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/disconnect_bw_20x20.png",
+                "name": "IMAGE_DISCONNECT_BW",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
                 "file": "images/disconnect.png",
                 "name": "IMAGE_DISCONNECT",
                 "type": "bitmap"
+            },
+            {
+                "file": "images/connect_bw_20x20.png",
+                "name": "IMAGE_CONNECT_BW",
+                "targetPlatforms": null,
+                "type": "png"
             },
             {
                 "file": "images/connect.png",
@@ -202,6 +184,24 @@
                 "type": "bitmap"
             },
             {
+                "file": "images/RTG-Logo_144x51.png",
+                "name": "RTG_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "images/AMD_Radeon_logo_144x51.png",
+                "name": "AMD_RADEON_LOGO",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "images/AMD_Logo_b_on_w_144x51.png",
+                "name": "AMD_LOGO_BLACK",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
                 "characterRegex": "[0-9:]",
                 "file": "fonts/Roboto-Bold.ttf",
                 "name": "FONT_ROBOTO_BOLD_52",
@@ -216,7 +216,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.82",
+    "versionLabel": "1.83",
     "watchapp": {
         "watchface": true
     }
