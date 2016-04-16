@@ -153,6 +153,7 @@
             {
                 "file": "images/disconnect.png",
                 "name": "IMAGE_DISCONNECT",
+                "targetPlatforms": null,
                 "type": "bitmap"
             },
             {
@@ -216,7 +217,7 @@
         "basalt"
     ],
     "uuid": "32725c7f-0275-41ed-ad81-f4fbbdcf8491",
-    "versionLabel": "1.85",
+    "versionLabel": "1.86",
     "watchapp": {
         "watchface": true
     }
