@@ -54,10 +54,11 @@ GBitmap *bkgd_amd_img[ARRAY_LENGTH(AMD_LOGO_BACKGROUND_RESOURCE_IDS)];
 static AppTimer *timer;
 static bool is_animating;
 
-enum WeatherKey {
+enum MsgsKeys {
   WEATHER_ICON_KEY = 0x0,         // TUPLE_INT
   WEATHER_TEMPERATURE_KEY = 0x1,  // TUPLE_CSTRING
   WEATHER_CITY_KEY = 0x2,         // TUPLE_CSTRING
+  STOCK_PRICE_KEY = 0x3			  // TUPLE_CSTRING		
 };
 
 static const uint32_t WEATHER_ICONS[] = {
@@ -69,10 +70,11 @@ static const uint32_t WEATHER_ICONS[] = {
 
 static TextLayer *temp_text_layer;
 static TextLayer *s_city_layer;
+static TextLayer *stock_text_layer;
 static BitmapLayer *s_icon_layer;
 static GBitmap *s_icon_bitmap = NULL;
 static AppSync s_sync;
-static uint8_t s_sync_buffer[64];
+static uint8_t s_sync_buffer[128];
 
 //// prototypes
 static void handle_timer(void *data);
@@ -96,11 +98,15 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
     case WEATHER_TEMPERATURE_KEY:
       text_layer_set_text(temp_text_layer, new_tuple->value->cstring);
       break;
-/*
+	  
     case WEATHER_CITY_KEY:
-      text_layer_set_text(s_city_layer, new_tuple->value->cstring);
+//      text_layer_set_text(s_city_layer, new_tuple->value->cstring);
       break;
-*/
+
+	case STOCK_PRICE_KEY:
+      text_layer_set_text(stock_text_layer, new_tuple->value->cstring);
+      break;
+
   }
 }
 
@@ -227,13 +233,21 @@ void handle_init(void) {
     text_layer_set_text(date_text_layer, "Sun Jan 1");
 	layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(date_text_layer));	
  
-    temp_text_layer = text_layer_create(GRect(8, 24, 144, 30));
+    temp_text_layer = text_layer_create(GRect(8, 24, 40, 30));
     text_layer_set_font(temp_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
     text_layer_set_text_alignment(temp_text_layer, GTextAlignmentLeft);
     text_layer_set_text_color(temp_text_layer, GColorSpringBud);	
     text_layer_set_background_color(temp_text_layer, GColorBlack);
     text_layer_set_text(temp_text_layer, "0000\u00B0C");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(temp_text_layer));	
+	
+    stock_text_layer = text_layer_create(GRect(96, 24, 40, 30));
+    text_layer_set_font(stock_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+    text_layer_set_text_alignment(stock_text_layer, GTextAlignmentRight);
+    text_layer_set_text_color(stock_text_layer, GColorIcterine);	
+    text_layer_set_background_color(stock_text_layer, GColorBlack);
+    text_layer_set_text(stock_text_layer, "$0.00");
+    layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(stock_text_layer));	
 	
     time_text_layer = text_layer_create(GRect(0, 46, 144, 80));
     text_layer_set_font(time_text_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ROBOTO_BOLD_52)));
@@ -261,18 +275,19 @@ void handle_init(void) {
     bt_connect_img     = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CONNECT_BW);
     bt_disconnect_img  = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_DISCONNECT_BW);
 #endif
-    layer_conn_img     = bitmap_layer_create(GRect(118, 10, 20, 20));
+    layer_conn_img     = bitmap_layer_create(GRect(118, 6, 20, 20));
     bitmap_layer_set_bitmap(layer_conn_img, bt_connect_img);
     layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(layer_conn_img));	
 
 	bluetooth_connection_service_subscribe(&handle_bluetooth);
     tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
 	
-	app_message_open(64, 64);
+	app_message_open(128, 128);
     Tuplet initial_values[] = {
     	TupletInteger(WEATHER_ICON_KEY, (uint8_t) 1),
     	TupletCString(WEATHER_TEMPERATURE_KEY, "----\u00B0C"),
-    	TupletCString(WEATHER_CITY_KEY, "St Pebblesburg"),
+    	TupletCString(WEATHER_CITY_KEY, "----------------"),
+    	TupletCString(STOCK_PRICE_KEY, "$---"),
   	};
 	app_sync_init(&s_sync, s_sync_buffer, sizeof(s_sync_buffer), initial_values, ARRAY_LENGTH(initial_values), sync_tuple_changed_callback, sync_error_callback, NULL);
  }

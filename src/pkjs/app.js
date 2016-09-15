@@ -19,7 +19,7 @@ function fetchWeather(latitude, longitude) {
   req.onload = function () {
     if (req.readyState === 4) {
       if (req.status === 200) {
-		console.log("Fetchweather response");
+		console.log("fetchweather response");
         console.log(req.responseText);
         var response = JSON.parse(req.responseText);
         var temperature = Math.round(response.main.temp - 273.15);
@@ -29,9 +29,37 @@ function fetchWeather(latitude, longitude) {
         console.log(icon);
         console.log(city);
         Pebble.sendAppMessage({
-          'WEATHER_ICON_KEY': icon,
+		  'WEATHER_ICON_KEY': icon,
           'WEATHER_TEMPERATURE_KEY': temperature + '\xB0C',
-          'WEATHER_CITY_KEY': city
+          'WEATHER_CITY_KEY': city,
+        });
+      } else {
+        console.log('Error');
+      }
+    }
+  };
+  req.send(null);
+}
+
+function fetchStock() {
+  var req = new XMLHttpRequest();
+  req.open('GET', 'https://www.google.com/finance/info?q=NYSE:AMD', true);
+  req.onload = function () {
+    if (req.readyState === 4) {
+      if (req.status === 200) {
+		console.log("fetchStock response");
+//        console.log(req.responseText);
+		var fix_response = req.responseText;
+		fix_response = fix_response.replace('// ', '');
+		fix_response = fix_response.replace('[', '');
+		fix_response = fix_response.replace(']', '');
+		fix_response = fix_response.replace(/\r?\n|\r/g, "");
+		console.log(fix_response);
+        var response = JSON.parse(fix_response);  
+		var stock = response.l_cur;
+		console.log(stock);
+        Pebble.sendAppMessage({
+		  'STOCK_PRICE_KEY': "$" + stock,
         });
       } else {
         console.log('Error');
@@ -44,6 +72,7 @@ function fetchWeather(latitude, longitude) {
 function locationSuccess(pos) {
   var coordinates = pos.coords;
   fetchWeather(coordinates.latitude, coordinates.longitude);
+  fetchStock();	
 }
 
 function locationError(err) {
