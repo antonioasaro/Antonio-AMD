@@ -241,7 +241,7 @@ void handle_init(void) {
     text_layer_set_text(temp_text_layer, "0000\u00B0C");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(temp_text_layer));	
 	
-    stock_text_layer = text_layer_create(GRect(96, 24, 40, 30));
+    stock_text_layer = text_layer_create(GRect(88, 24, 48, 30));
     text_layer_set_font(stock_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
     text_layer_set_text_alignment(stock_text_layer, GTextAlignmentRight);
     text_layer_set_text_color(stock_text_layer, GColorSpringBud);	

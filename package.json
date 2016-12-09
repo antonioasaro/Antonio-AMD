@@ -182,6 +182,7 @@
                     "file": "images/amd_menu_icon.png",
                     "menuIcon": true,
                     "name": "IMAGE_AMD_MENU_ICON",
+                    "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
@@ -225,5 +226,5 @@
             "watchface": true
         }
     },
-    "version": "1.91.0"
+    "version": "1.92.0"
 }
